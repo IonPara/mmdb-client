@@ -1,0 +1,13 @@
+.footer {
+    background-color: black;
+    display: flex;
+    height: 200px;
+}
+
+.footer-heading {
+    margin: 1% auto auto;
+    border: solid red;
+    width: 70%;
+    border: none;
+    font-size: 3.5rem;
+}

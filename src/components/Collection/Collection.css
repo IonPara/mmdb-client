@@ -1,0 +1,30 @@
+.movie-section .collections {
+    border: 2px solid #635abf;
+    width: 190px;
+    margin-left: 10px;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.collections h3 {
+    width: 50%;
+    height: 100%;
+    padding: 3px 3px 0 3px;
+    transition: all .3s ease-in;
+}
+
+.selected {
+    color: white;
+    background: #635abf;
+
+}
+
+.unselected {
+    color: black;
+    background: transparent;
+}
+
+.collections h3:hover {
+    cursor: pointer;
+}
