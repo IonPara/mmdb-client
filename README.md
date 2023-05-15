@@ -67,7 +67,7 @@ Open your browser and visit [http://localhost:5173/](http://localhost:5173/) to 
 ![My Movie Database](https://github.com/IonPara/mmdb-client/assets/84988051/eb52bd86-5d3f-477a-8ada-5df551e844d0)
 
 
-## Contributing
+### Contributing
 Contributions are welcome! If you'd like to contribute to MMDB, please follow these steps:
 
 1. Fork the repository.
