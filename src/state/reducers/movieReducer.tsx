@@ -11,6 +11,35 @@ interface Genre {
   name: string;
 }
 
+export interface PersonType {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  known_for: Person[];
+}
+interface Person {
+  adult: false;
+  backdrop_path: string;
+  id: number;
+  title: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  media_type: string;
+  genre_ids: number[];
+  popularity: number;
+  release_date: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
 // Define a type for the slice state
 export interface MovieState {
   movies: {
@@ -31,6 +60,7 @@ export interface MovieState {
     keys: string[];
     titles: string[];
   };
+  people: PersonType[];
 }
 
 // Define the initial state using that type
@@ -53,6 +83,7 @@ const initialState: MovieState = {
     keys: [],
     titles: [],
   },
+  people: [],
 };
 
 export const movieSlice = createSlice({
@@ -174,6 +205,13 @@ export const movieSlice = createSlice({
         state.tv.topRated = sortTvList(action.payload[1], state.tv.topRated);
       }
     },
+
+    setPeople: (state, action: PayloadAction<PersonType[]>) => {
+      state.people = action.payload;
+    },
+    loadMorePeople: (state, action: PayloadAction<PersonType[]>) => {
+      state.people = state.people?.concat(action.payload);
+    },
   },
 });
 
@@ -190,6 +228,8 @@ export const {
   setTvGenres,
   sortMovies,
   sortTvShows,
+  setPeople,
+  loadMorePeople,
 } = movieSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

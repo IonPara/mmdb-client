@@ -86,6 +86,15 @@ const SearchResults = ({
           >
             TV Shows
           </h3>
+          <h3
+            className={active === "person" ? "type active" : "type"}
+            onClick={() => {
+              setPage(1);
+              handleClick("person");
+            }}
+          >
+            People
+          </h3>
         </div>
       </div>
       {/* -------------Search Form -----------------*/}
@@ -94,7 +103,7 @@ const SearchResults = ({
           className="ml-1"
           value={inputText}
           type="text"
-          placeholder="Search for a movie, tv-show"
+          placeholder="Search for a movie, tv-show or person"
           onChange={(e) => {
             setInputText(e.target.value);
           }}

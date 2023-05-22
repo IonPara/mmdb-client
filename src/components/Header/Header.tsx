@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useAppDispatch } from "../../state/hooks/hooks";
 import { sortMovies } from "../../state/reducers/movieReducer";
 import { fetchTvs } from "../../hooks/fetchMovies";
+import { fetchPeople } from "../../hooks/fetchPeople";
 
 interface Props {
   setInputText: React.Dispatch<React.SetStateAction<string>>;
@@ -97,7 +98,15 @@ const Header = ({ setInputText }: Props) => {
           TV Shows
           {showModal === "tv-shows" && tvModal}
         </li>
-        <li className="header-list-item">People</li>
+        <li
+          className="header-list-item"
+          onClick={() => {
+            navigate("/people");
+            fetchPeople(dispatch);
+          }}
+        >
+          People
+        </li>
       </ul>
     </header>
   );

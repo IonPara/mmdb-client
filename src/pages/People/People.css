@@ -1,0 +1,29 @@
+.person {
+    width: 180px;
+    margin: 20px 20px 0 10px;
+    color: rgb(57, 52, 52);
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+}
+
+.name {
+    padding: 5px;
+}
+
+.person .image-container {
+    margin-bottom: 0;
+}
+
+.people-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.people-container button {
+    margin-top: 20px;
+}

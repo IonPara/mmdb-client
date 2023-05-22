@@ -9,6 +9,7 @@ lerna-debug.log*
 
 .history
 .hintrc
+.env
 
 node_modules
 dist

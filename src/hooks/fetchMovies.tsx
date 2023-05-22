@@ -13,7 +13,7 @@ import {
 } from "../state/reducers/movieReducer";
 import { MovieType } from "../components/Movies/Movies";
 
-const apiKey: string = "924ad7aa1e5625716c51fc60a9683870";
+const apiKey: string = import.meta.env.VITE_REACT_API_KEY;
 
 // ------------------------------------fetchVideos---------------------------------
 export const fetchVideos = async (
@@ -93,30 +93,41 @@ export const handleSearch = async (
   title: string,
   dispatch: AppDispatch,
   page: string,
-  movieType: string
+  searchType: string
 ) => {
-  const movieTitle = encodeURI(title);
+  const name = encodeURI(title);
   let response: Response;
   try {
-    if (movieType === "movie") {
-      response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieTitle}&include_adult=false&page=${page}&language=en`
-      );
-    } else {
-      response = await fetch(
-        `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${movieTitle}&page=${page}&include_adult=false`
-      );
+    switch (searchType) {
+      case "movie":
+        response = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`
+        );
+        break;
+      case "person":
+        response = await fetch(
+          `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`
+        );
+        break;
+      default:
+        response = await fetch(
+          `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${name}&page=${page}&include_adult=false`
+        );
+        break;
     }
-
     if (response.ok) {
-      if (movieType === "movie") {
-        const moviesResponse = await response.json();
-        dispatch(setSearchedMovies(moviesResponse));
-      }
-
-      if (movieType === "tv-shows") {
-        const tvResults = await response.json();
-        dispatch(setSearchedTvShows(tvResults));
+      switch (searchType) {
+        case "movie":
+          const moviesResponse = await response.json();
+          dispatch(setSearchedMovies(moviesResponse));
+          break;
+        case "person":
+          const peopleResults = await response.json();
+          break;
+        default:
+          const tvResults = await response.json();
+          dispatch(setSearchedTvShows(tvResults));
+          break;
       }
     } else {
       throw new Error("Request failed!");
