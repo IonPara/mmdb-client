@@ -1,4 +1,4 @@
-# mmdb-client
+# mmdb-front-end
 
 📃 **Content:**
 - [General Information ](#General-Information)
