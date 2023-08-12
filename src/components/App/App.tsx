@@ -17,6 +17,8 @@ import "./App.css";
 import Collection from "../Collection/Collection";
 import NowPlayTvShows from "../../pages/NowPlaying/NowPlayTvShows";
 import People from "../../pages/People/People";
+import MovieDetails from "../../pages/MovieDetails/MovieDetails";
+import PersonPage from "../../pages/People/PersonPage";
 
 function App() {
   // create a state that will store value from the search input
@@ -109,6 +111,8 @@ function App() {
         <Route path="popular_tv" element={<PopTvShows />} />
         <Route path="top_rated_tv" element={<TvShows />} />
         <Route path="people" element={<People />} />
+        <Route path="details" element={<MovieDetails />} />
+        <Route path="person" element={<PersonPage />} />
       </Routes>
       <Footer />
     </div>

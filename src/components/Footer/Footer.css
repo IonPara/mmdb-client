@@ -1,13 +1,37 @@
 .footer {
     background-color: black;
     display: flex;
+    flex-wrap: wrap;
     height: 200px;
 }
 
 .footer-heading {
-    margin: 1% auto auto;
-    border: solid red;
-    width: 70%;
+    margin: 1% 0 auto auto;
     border: none;
     font-size: 3.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.lists-container {
+    width: auto;
+    padding: 30px;
+    margin-right: auto;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70%;
+}
+
+#list {
+    margin-left: 50px;
+}
+
+#list h2 {
+    margin-block: 10px;
+    font-weight: 400;
+}
+
+#list ul {
+    list-style: none;
+    line-height: 160%
 }

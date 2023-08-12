@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { useAppSelector, useAppDispatch } from "../../state/hooks/hooks";
-import Person from "./Person";
+
+import Person from "../../components/Person/Person";
 import "./People.css";
 import { fetchPeople } from "../../hooks/fetchPeople";
 

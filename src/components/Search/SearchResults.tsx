@@ -30,6 +30,7 @@ const SearchResults = ({
   const state = useAppSelector((state) => state.collection);
   const { searchedMovies } = state.movies;
   const { searchedTvShows } = state.tv;
+  const { people } = state;
 
   let movies = active === "movie" ? searchedMovies : searchedTvShows;
 

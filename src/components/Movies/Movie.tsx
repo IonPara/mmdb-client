@@ -1,5 +1,8 @@
 import { MovieType } from "./Movies";
 import { dateFunction } from "../../hooks/dateFunction";
+import { useAppDispatch } from "../../state/hooks/hooks";
+import { fetchMovieCredits, fetchMovieDetails } from "../../hooks/fetchMovies";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   movie: MovieType;
@@ -7,8 +10,16 @@ interface Props {
 }
 
 const Movie = ({ movie, overview }: Props) => {
+  const type = movie.title ? "movie" : "tv";
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleClick = (movieId: number) => {
+    navigate("/details");
+    fetchMovieCredits(movieId, dispatch, type);
+    fetchMovieDetails(movieId, dispatch, type);
+  };
   return movie.poster_path ? (
-    <div className="movie" key={movie.id}>
+    <div className="movie" key={movie.id} onClick={() => handleClick(movie.id)}>
       <div className="image-container">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

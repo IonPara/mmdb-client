@@ -40,6 +40,148 @@ interface Person {
   vote_count: number;
 }
 
+interface ExtendedPersonType {
+  adult: boolean;
+  also_known_as: string[];
+  biography: string;
+  birthday: string;
+  deathday: string | null;
+  gender: 1;
+  homepage: string | null;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+}
+
+interface CastType {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  character: string;
+  credit_id: string;
+  order: number;
+  department?: string;
+  job?: string;
+  episode_count?: string;
+  media_type: string;
+}
+
+interface CombinedCreditsType {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  character: string;
+  credit_id: string;
+  order: number;
+  department?: string;
+  job?: string;
+  episode_count?: string;
+  media_type: string;
+}
+
+export interface MovieDetails {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: null;
+  budget: number;
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
+  production_countries: {
+    iso_3166_1: string;
+    name: string;
+  }[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: {
+    english_name: string;
+    iso_639_1: string;
+    name: string;
+  }[];
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  first_air_date: string;
+  name: string;
+  number_of_seasons: number;
+}
+
+export interface MovieCredits {
+  id: number;
+  cast: {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
+  }[];
+  crew: {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    credit_id: string;
+    department: string;
+    job: string;
+  }[];
+}
+
 // Define a type for the slice state
 export interface MovieState {
   movies: {
@@ -61,6 +203,13 @@ export interface MovieState {
     titles: string[];
   };
   people: PersonType[];
+  movieDetails: MovieDetails | undefined;
+  movieCredits: MovieCredits | undefined;
+  type: string;
+  person: {
+    personDetails: ExtendedPersonType | undefined;
+    combinedCredits: CombinedCreditsType[] | undefined;
+  };
 }
 
 // Define the initial state using that type
@@ -84,6 +233,13 @@ const initialState: MovieState = {
     titles: [],
   },
   people: [],
+  movieDetails: undefined,
+  movieCredits: undefined,
+  type: "movie",
+  person: {
+    personDetails: undefined,
+    combinedCredits: undefined,
+  },
 };
 
 export const movieSlice = createSlice({
@@ -169,7 +325,6 @@ export const movieSlice = createSlice({
     setTvGenres: (state, action: PayloadAction<Genre[]>) => {
       state.tv.tvGenres = action.payload;
     },
-
     sortMovies: (state, action: PayloadAction<string[]>) => {
       if (action.payload[0] === "now_playing") {
         state.movies.nowPlaying = sortMovieList(
@@ -190,7 +345,6 @@ export const movieSlice = createSlice({
         );
       }
     },
-
     sortTvShows: (state, action: PayloadAction<string[]>) => {
       if (action.payload[0] === "airing_today") {
         state.tv.nowPlaying = sortTvList(
@@ -205,12 +359,29 @@ export const movieSlice = createSlice({
         state.tv.topRated = sortTvList(action.payload[1], state.tv.topRated);
       }
     },
-
     setPeople: (state, action: PayloadAction<PersonType[]>) => {
       state.people = action.payload;
     },
     loadMorePeople: (state, action: PayloadAction<PersonType[]>) => {
       state.people = state.people?.concat(action.payload);
+    },
+    setMovieDetails: (state, action: PayloadAction<any>) => {
+      state.movieDetails = action.payload;
+    },
+    setMovieCredits: (state, action: PayloadAction<MovieCredits>) => {
+      state.movieCredits = action.payload;
+    },
+    setType: (state, action: PayloadAction<string>) => {
+      state.type = action.payload;
+    },
+    setPerson: (state, action: PayloadAction<ExtendedPersonType>) => {
+      state.person.personDetails = action.payload;
+    },
+    setCombinedCredits: (
+      state,
+      action: PayloadAction<CombinedCreditsType[]>
+    ) => {
+      state.person.combinedCredits = action.payload;
     },
   },
 });
@@ -230,6 +401,11 @@ export const {
   sortTvShows,
   setPeople,
   loadMorePeople,
+  setMovieDetails,
+  setMovieCredits,
+  setType,
+  setPerson,
+  setCombinedCredits,
 } = movieSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

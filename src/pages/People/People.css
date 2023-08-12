@@ -27,3 +27,90 @@
 .people-container button {
     margin-top: 20px;
 }
+
+/* Person Page section ------------------------------------------------- */
+
+.person-details-container {
+    color: black;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 10px 0 10px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.person:hover {
+    cursor: pointer;
+}
+
+.personal-info {
+    display: flex;
+}
+
+.personal-info h2,
+.personal-info h3 {
+    margin-bottom: 5px;
+}
+
+.personal-info p {
+    padding: 5px 20px 0 5px;
+}
+
+.personal-details div {
+    margin: 0 20px 10px 20px;
+}
+
+.person-details-container h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.personal-image-container {
+    min-width: 300px;
+    max-width: 300px;
+    height: 100%;
+}
+
+.main-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* known-for */
+.known-for {
+    font-weight: 500;
+    color: grey;
+    margin: 5px;
+}
+
+.dash::after {
+    content: ' - ';
+    margin-right: 5px;
+}
+
+.section-heading {
+    margin-top: 20px;
+    font-size: 1.7rem;
+    border-bottom: 2px solid rgb(195, 192, 192);
+}
+
+.personal-info #see-more {
+    position: relative;
+    margin: 0;
+}
+
+.biography p {
+    max-height: 200px;
+    overflow-y: hidden;
+}
+
+#see-more span {
+    position: absolute;
+    color: royalblue;
+    bottom: 0px;
+    right: -65px;
+    cursor: pointer;
+}

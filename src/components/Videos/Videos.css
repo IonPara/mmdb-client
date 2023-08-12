@@ -31,10 +31,6 @@
     transition: all .5s ease-in-out;
 }
 
-/* .video-container:hover {
-    transform: scale(1.1);
-} */
-
 .trailers-container::-webkit-scrollbar {
     height: 8px;
 }

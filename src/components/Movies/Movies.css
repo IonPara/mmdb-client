@@ -18,6 +18,10 @@
     margin: 20px 20px 0 10px;
 }
 
+.movie:hover {
+    cursor: pointer;
+}
+
 .movie-details {
     display: flex;
     flex-direction: column;

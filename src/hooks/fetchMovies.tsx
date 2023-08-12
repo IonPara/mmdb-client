@@ -10,10 +10,20 @@ import {
   setSearchedTvShows,
   setMovieGenres,
   setTvGenres,
+  setMovieDetails,
+  setMovieCredits,
+  setType,
 } from "../state/reducers/movieReducer";
 import { MovieType } from "../components/Movies/Movies";
 
 const apiKey: string = import.meta.env.VITE_REACT_API_KEY;
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${apiKey}`,
+  },
+};
 
 // ------------------------------------fetchVideos---------------------------------
 export const fetchVideos = async (
@@ -88,6 +98,42 @@ export const fetchMovies = async (
   }
 };
 
+export const fetchMovieDetails = async (
+  movieId: number,
+  dispatch: AppDispatch,
+  type: string
+) => {
+  const urlToFetch: string = `https://api.themoviedb.org/3/${type}/${movieId}?api_key=${apiKey}`;
+  try {
+    const response = await fetch(urlToFetch);
+    if (response.ok) {
+      const movieDetails = await response.json();
+      dispatch(setMovieDetails(movieDetails));
+      dispatch(setType(type));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchMovieCredits = async (
+  movieId: number,
+  dispatch: AppDispatch,
+  type: string
+) => {
+  const urlToFetch: string = `https://api.themoviedb.org/3/${type}/${movieId}/credits?api_key=${apiKey}`;
+  try {
+    const response = await fetch(urlToFetch);
+    if (response.ok) {
+      const movieCredits = await response.json();
+      console.log(movieCredits);
+      dispatch(setMovieCredits(movieCredits));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // -----------------------------------------Handle search -------------------------------------
 export const handleSearch = async (
   title: string,
@@ -101,17 +147,20 @@ export const handleSearch = async (
     switch (searchType) {
       case "movie":
         response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`,
+          options
         );
         break;
       case "person":
         response = await fetch(
-          `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`
+          `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${name}&include_adult=false&page=${page}&language=en-US`,
+          options
         );
         break;
       default:
         response = await fetch(
-          `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${name}&page=${page}&include_adult=false`
+          `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${name}&page=${page}&include_adult=false`,
+          options
         );
         break;
     }
