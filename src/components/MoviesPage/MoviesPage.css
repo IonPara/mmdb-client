@@ -58,7 +58,8 @@
 
 .actions {
     width: 180px;
-    margin-right: 20px;
+    margin-right: 15px;
+    margin-left: 5px;
 }
 
 .actions p {
@@ -136,4 +137,19 @@
 
 .reset-btn {
     margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+    .movies-page {
+        flex-wrap: wrap;
+    }
+
+    .actions {
+        width: calc(100% - 20px);
+    }
+
+    .sort,
+    .filter {
+        width: 100%;
+    }
 }

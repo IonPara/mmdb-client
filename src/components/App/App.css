@@ -3,6 +3,11 @@
     margin: auto;
 }
 
+.App {
+    padding: 0;
+    margin: 0;
+}
+
 .black {
     color: black;
 }

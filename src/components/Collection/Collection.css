@@ -28,3 +28,9 @@
 .collections h3:hover {
     cursor: pointer;
 }
+
+@media (max-width: 380px) {
+    .trending {
+        font-size: 1.3rem;
+    }
+}

@@ -8,15 +8,17 @@ import noImage from "../../assets/images/no-profile-picture.webp";
 import { useAppSelector } from "../../state/hooks/hooks";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import { Navigation, Autoplay, Parallax } from "swiper";
 // import Swiper and modules styles
 import { MovieType } from "../../components/Movies/Movies";
 import Movies from "../../components/Movies/Movies";
+import useWindowSize from "../../hooks/windowSize";
 // Import css styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/zoom";
 import "./MovieDetails.css";
+import "swiper/css/parallax";
 
 // Import the api key from the env file
 const API_KEY = import.meta.env.VITE_REACT_API_KEY;
@@ -47,6 +49,14 @@ const MovieDetails = () => {
 
   const backgroundImage: React.CSSProperties = {
     backgroundImage: `url("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
+  };
+
+  const [height, width] = useWindowSize();
+
+  const imgWidth = width / 2;
+
+  const imageWidth: React.CSSProperties = {
+    width: width > 480 ? imgWidth : "500px",
   };
 
   // Convert the length of the movie into more readable format
@@ -156,7 +166,7 @@ const MovieDetails = () => {
                   ))}
               </div>
             </div>
-            <div className="flex">
+            <div className="flex" id="player-and-poster">
               <div className="poster-container">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
@@ -230,7 +240,7 @@ const MovieDetails = () => {
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
-          slidesPerView={2}
+          slidesPerView={width > 480 ? 2 : 1}
           navigation
           autoplay
         >
@@ -240,6 +250,7 @@ const MovieDetails = () => {
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
                   alt=""
+                  style={imageWidth}
                 />
               </SwiperSlide>
             );
@@ -258,7 +269,7 @@ const MovieDetails = () => {
           modules={[Navigation, Autoplay]}
           navigation
           spaceBetween={50}
-          slidesPerView={2}
+          slidesPerView={width > 480 ? 2 : 1}
           autoplay
         >
           {videos?.map((video: any, index) => {
@@ -267,7 +278,7 @@ const MovieDetails = () => {
                 <SwiperSlide key={index}>
                   <iframe
                     className="youtube-video p-2"
-                    width="500"
+                    width={width < 480 ? "500" : width / 2}
                     height="300"
                     src={`https://www.youtube.com/embed/${video.key}`}
                     title="YouTube video player"

@@ -35,3 +35,19 @@
     list-style: none;
     line-height: 160%
 }
+
+@media (max-width: 600px) {
+    .footer {
+        height: 250px;
+        margin-bottom: 0;
+    }
+
+    .footer-heading {
+        margin-left: auto;
+    }
+
+    .lists-container {
+        margin: auto;
+        height: 57%;
+    }
+}

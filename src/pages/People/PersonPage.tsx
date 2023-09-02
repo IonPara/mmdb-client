@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/zoom";
 import "./People.css";
+import useWindowSize from "../../hooks/windowSize";
 
 // const person = {
 //   adult: false,
@@ -822,6 +823,30 @@ const PersonPage = () => {
     (state) => state.collection.person.combinedCredits
   );
 
+  const [height, width] = useWindowSize();
+
+  const getSize = () => {
+    if (width < 400) {
+      return 1;
+    }
+
+    if (width < 480) {
+      return 2;
+    }
+
+    if (width < 768) {
+      return 3;
+    }
+
+    if (width < 1200) {
+      return 4;
+    }
+
+    if (width > 1200) {
+      return 6;
+    }
+  };
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -898,7 +923,7 @@ const PersonPage = () => {
           modules={[Navigation, Autoplay]}
           navigation
           spaceBetween={50}
-          slidesPerView={6}
+          slidesPerView={getSize()}
           autoplay
         >
           {combinedCredits?.map((credit, index) => {

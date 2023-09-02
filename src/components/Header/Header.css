@@ -68,6 +68,12 @@
     cursor: pointer;
 }
 
+@media (max-width:420px) {
+    .text-shadow {
+        margin-inline: 0;
+    }
+}
+
 
 @keyframes flicker {
     0% {

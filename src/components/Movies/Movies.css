@@ -18,6 +18,13 @@
     margin: 20px 20px 0 10px;
 }
 
+@media (max-width: 450px) {
+
+    .movie-section {
+        padding: 10px;
+    }
+}
+
 .movie:hover {
     cursor: pointer;
 }
