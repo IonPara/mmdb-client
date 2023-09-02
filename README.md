@@ -19,6 +19,7 @@ MMDB is a web application built using React, Vite, TypeScript, and CSS. It allow
 - View movie details, including synopsis, release date, and ratings
 - Filter movies by genre
 
+:floppy_disk: The app was deployed on [Netlify.com](https://www.netlify.com/)
 
 ## 🔣 <a id="languages">Technoloogies used </a>:
 
@@ -41,6 +42,8 @@ MMDB is a web application built using React, Vite, TypeScript, and CSS. It allow
 
 
 ## 📘 <a id="setup">Setup</a>:
+
+### You can visualise it by clicking on the link [here](https://mmdb1.netlify.app/)
 
 To get started with MMDB, clone the repository to your local machine and navigate to the project directory:
 
