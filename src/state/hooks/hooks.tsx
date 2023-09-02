@@ -1,7 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../store/store";
 import type { MovieType } from "../../components/Movies/Movies";
-import _default from "react-bootstrap/esm/Dropdown";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export type DispatchFunc = () => AppDispatch;

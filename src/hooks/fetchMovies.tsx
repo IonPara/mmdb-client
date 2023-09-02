@@ -70,7 +70,7 @@ export const fetchMovies = async (
         switch (param) {
           case "now_playing": {
             moviesResponse.results.forEach((movie: MovieType) => {
-              fetchVideos(movie.id, dispatch, movie.title);
+              if (movie.title) fetchVideos(movie.id, dispatch, movie.title);
             });
             dispatch(setNowPlaying([moviesResponse, "movies"]));
             break;
