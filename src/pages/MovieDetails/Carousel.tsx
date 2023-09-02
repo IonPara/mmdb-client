@@ -25,9 +25,9 @@
         </div> */
 }
 
-const ref = useRef(null);
-const scroll = (scrollOffSet: number) => {
-  if (ref.current) {
-    (ref.current as any).scrollLeft += scrollOffSet;
-  }
-};
+// const ref = useRef(null);
+// const scroll = (scrollOffSet: number) => {
+//   if (ref.current) {
+//     (ref.current as any).scrollLeft += scrollOffSet;
+//   }
+// };
